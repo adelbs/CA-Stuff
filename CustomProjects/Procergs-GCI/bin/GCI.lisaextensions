@@ -1,0 +1,9 @@
+# lisaextensions file
+
+vseProtocols=com.ca.sv.ext.vse.stateless.protocol.gci.GCI
+
+com.ca.sv.ext.vse.stateless.protocol.gci.GCI=data:req:resp,Procergs GCI,Convert Procergs's proprietary protocol messages to and from understandable formats (text based, format determined by transaction)
+
+tcpProtocolDelimiters=com.ca.sv.ext.vse.stateless.protocol.gci.GCIDelimiter
+# classname=Description,Can process requests,Can process responses,Should treat field as text, label for additional information
+com.ca.sv.ext.vse.stateless.protocol.gci.GCIDelimiter=Procergs GCI, true, true, false

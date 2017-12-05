@@ -1,0 +1,34 @@
+<div class="menuBar">
+    <div><img src="img/logo.png" width="200px"></div>
+    <div style="margin-left: 20px;">
+        <ul class="nav nav-pills">
+            <li [class.active]="isActive('')" role="presentation">
+                <a (click)="clickMenu('')">Encontrar<br/>Passagens</a>
+            </li>
+            <li [class.active]="isActive('destiny/1-national')" role="presentation">
+                <a (click)="clickMenu('destiny/1-national')">Destinos<br/>Nacionais</a>
+            </li>
+            <li [class.active]="isActive('destiny/2-international')" role="presentation">
+                <a (click)="clickMenu('destiny/2-international')">Destinos<br/>Internacionais</a>
+            </li>
+
+            <li [class.active]="isActive('user')" *ngIf="true" role="presentation">
+                <a (click)="clickMenu('user')">
+                    <div><img src="img/user.png" width="30px"/></div>
+                    <div style="text-align: left;">Felipe Jacob<br/><b>90pts</b></div>
+                </a>
+            </li>
+
+            <li [class.active]="isActive('user')" *ngIf="false" role="presentation">
+                <a data-toggle="modal" data-target="#defModal">Login<br/>&nbsp;</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<div class="pageContent">
+    <router-outlet></router-outlet>
+</div>
+
+<div class="pageFooter" (click)="adminPage();">Build number: {{buildNumber}}</div>

@@ -1,0 +1,58 @@
+<div class="row" *ngIf="dests?.length==0">
+    Infelizmente nao encontramos nenhuma passagem disponivel.
+</div>
+<div *ngFor="let destiny of dests" class="row">
+    <div class="thumbnail">
+        <img src="img/{{destiny.imgUrl}}" width="200px">
+        <div class="caption">
+            <h4>{{destiny.destiny}}</h4>
+            <p>{{destiny.description}}</p>
+            <p>
+                <a class="btn btn-primary" data-toggle="modal" data-target="#defModal" role="button">R$ {{destiny.value}},00</a>
+                <a class="btn btn-default" data-toggle="modal" data-target="#defModal" role="button">{{destiny.points}}pts</a>
+
+                <a class="btn btn-default" role="button" *ngIf="newImplementation">
+                    R$ {{ (destiny.value / 2)|number:'1.0-0' }},00 + 
+                    {{ ((destiny.points / 2) + 15)|number:'1.0-0' }}pts
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="defModal" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Compra de Passagem
+            </div>
+            <div class="modal-body">
+                Confirma a compra dessa passagem?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" (click)="buyTicket();">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="defModalConfirm" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Compra de Passagem
+            </div>
+            <div class="modal-body">
+                Passagem emitida com sucesso!<br/>
+                Voce recebera um e-mail com as instrucoes em breve.<br/>
+                Obrigado pela compra! Esperamos que faca uma boa viagem!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
