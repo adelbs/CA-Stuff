@@ -1,0 +1,17 @@
+    public java.lang.String getTheatreWSAddress() {
+    	String value = theatreWS_address;
+    	
+    	try {
+	    	Properties props = new Properties();
+	    	InputStream in = getClass().getClassLoader().getResourceAsStream("serviceProperties.properties");
+	    	props.load(in);
+	    	in.close();
+	    	
+	    	value = props.getProperty("theatre.endpoint") +"/Theatre/services/TheatreWS";
+    	}
+    	catch (Exception x) {
+    		x.printStackTrace();
+    	}
+    	
+    	return value;
+    }

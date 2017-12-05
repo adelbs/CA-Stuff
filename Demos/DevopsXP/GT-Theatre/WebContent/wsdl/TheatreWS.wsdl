@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.business.fi.obi1" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.business.fi.obi1" xmlns:intf="http://service.business.fi.obi1" xmlns:tns1="http://to.business.fi.obi1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.business.fi.obi1" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://to.business.fi.obi1"/>
+   <element name="performBuy">
+    <complexType>
+     <sequence>
+      <element name="idTicket" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="performBuyResponse">
+    <complexType/>
+   </element>
+   <element name="findEventos">
+    <complexType>
+     <sequence>
+      <element name="idEvento" type="xsd:int"/>
+      <element name="tpEvento" type="xsd:string"/>
+      <element name="titulo" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findEventosResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="findEventosReturn" type="tns1:EventoWSTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_TicketWSTO">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:TicketWSTO"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://to.business.fi.obi1" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.business.fi.obi1"/>
+   <complexType name="TicketWSTO">
+    <sequence>
+     <element name="idTickCdTicket" nillable="true" type="xsd:int"/>
+     <element name="tickDsDescricao" nillable="true" type="xsd:string"/>
+     <element name="tickNrDisponivel" nillable="true" type="xsd:int"/>
+     <element name="tickNrValor" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="EventoWSTO">
+    <sequence>
+     <element name="evenCdTipo" nillable="true" type="xsd:string"/>
+     <element name="evenDhEvento" nillable="true" type="xsd:string"/>
+     <element name="evenDsDescricao" nillable="true" type="xsd:string"/>
+     <element name="evenDsLocal" nillable="true" type="xsd:string"/>
+     <element name="evenDsTitulo" nillable="true" type="xsd:string"/>
+     <element name="idEvenCdEvento" nillable="true" type="xsd:int"/>
+     <element name="tickets" nillable="true" type="impl:ArrayOf_tns1_TicketWSTO"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="performBuyRequest">
+
+      <wsdl:part element="impl:performBuy" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findEventosRequest">
+
+      <wsdl:part element="impl:findEventos" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findEventosResponse">
+
+      <wsdl:part element="impl:findEventosResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="performBuyResponse">
+
+      <wsdl:part element="impl:performBuyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TheatreWS">
+
+      <wsdl:operation name="performBuy">
+
+         <wsdl:input message="impl:performBuyRequest" name="performBuyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:performBuyResponse" name="performBuyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findEventos">
+
+         <wsdl:input message="impl:findEventosRequest" name="findEventosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findEventosResponse" name="findEventosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TheatreWSSoapBinding" type="impl:TheatreWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="performBuy">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="performBuyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="performBuyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findEventos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findEventosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findEventosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TheatreWSService">
+
+      <wsdl:port binding="impl:TheatreWSSoapBinding" name="TheatreWS">
+
+         <wsdlsoap:address location="http://localhost:8080/GT-Theatre/services/TheatreWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

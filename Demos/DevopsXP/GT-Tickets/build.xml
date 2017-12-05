@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="buildJar" name="Creates Jar">
+	
+	<property name="projectName" value="Tickets" />
+	<property name="lib.dir"     value="WebContent/WEB-INF/lib"/>
+	
+	<path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+		<fileset dir="">
+			<filename name="servlet-api.jar"/>
+		</fileset>
+    </path>
+	
+    <target name="buildJar">
+    	
+    	<delete dir="build/classes" />
+    	<delete file="build/${projectName}.war" />
+    	<delete file="build/${projectName}Test.jar" />
+    	
+    	<sleep seconds="2"/>
+    	
+    	<mkdir dir="build/classes"/>
+    	
+    	<javac 
+    		includeantruntime="false" srcdir="src" destdir="build/classes" 
+    		fork="yes"
+    		compiler="javac1.7"
+    		classpathref="classpath"/>
+    	
+    	<copy todir="build/classes">
+    		<fileset dir="src">
+			    <include name="**/*.xml" />
+    			<include name="**/*.properties" />
+			</fileset>
+    	</copy>
+    	
+		<war destfile="build/${projectName}.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent"/>
+			<lib dir="WebContent/WEB-INF/lib"/>
+			<classes dir="build/classes"/>
+		</war>
+    	
+        <jar destfile="build/${projectName}Test.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="obi1.fi.test.SeleniumTest"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="build/classes">
+            	<include name="**/Selenium*"/>
+            	<include name="**/*.properties"/>
+        	</fileset>
+        	<!-- LIBS SELENIUM -->
+        	<zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/selenium-java-2.53.0.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/selenium-server-standalone-2.44.0.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/gson-2.3.1.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/guava-19.0.jar"/>
+        	<!-- LIBS POI -->
+            <zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/poi-3.13-20150929.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/poi-ooxml-3.13-20150929.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/poi-ooxml-schemas-3.13-20150929.jar"/>
+        	<zipfileset excludes="META-INF/*.SF" src="WebContent/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
+        </jar>
+    	
+    </target>
+	
+</project>

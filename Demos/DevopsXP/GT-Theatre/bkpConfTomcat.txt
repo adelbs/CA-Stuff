@@ -1,0 +1,41 @@
+      <Context docBase="GT-Theatre" path="/Theatre" reloadable="true" source="org.eclipse.jst.jee.server:GalaxyTicketsTheatre">
+			<!-- Resource name="jdbc/TheatreDB"
+						auth="Container"
+						type="javax.sql.DataSource"
+						username="root"
+						password="sadb123"
+						driverClassName="com.mysql.jdbc.Driver"
+						url="jdbc:mysql://localhost:3306/ticketsgalaxy_theatre"
+						maxActive="15"
+						maxIdle="3"/ -->
+						
+			<Resource name="jdbc/TheatreDB"
+						auth="Container"
+						type="javax.sql.DataSource"
+						driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+						url="jdbc:derby:c:/ca/deepdivesv_theatre;create=true;user=me;password=mine"
+						maxActive="15"
+						maxIdle="3"/>
+
+      </Context>
+      
+      <Context docBase="GT-Tickets" path="/Tickets" reloadable="true" source="org.eclipse.jst.jee.server:GalaxyTicketsWeb">
+			<!-- Resource name="jdbc/TicketsDB"
+						auth="Container"
+						type="javax.sql.DataSource"
+						username="root"
+						password="sadb123"
+						driverClassName="com.mysql.jdbc.Driver"
+						url="jdbc:mysql://localhost:3306/ticketsgalaxy_web"
+						maxActive="15"
+						maxIdle="3"/ -->
+						
+			<Resource name="jdbc/TicketsDB"
+						auth="Container"
+						type="javax.sql.DataSource"
+						driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+						url="jdbc:derby:c:/ca/deepdivesv_tickets;create=true;user=me;password=mine"
+						maxActive="15"
+						maxIdle="3"/>
+
+      </Context>

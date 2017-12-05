@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TheatreWSService WSDL service -->
+
+  <service name="TheatreWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.business.fi.obi1"/>
+      <parameter name="wsdlServiceElement" value="TheatreWSService"/>
+      <parameter name="schemaQualified" value="http://to.business.fi.obi1,http://service.business.fi.obi1"/>
+      <parameter name="wsdlServicePort" value="TheatreWS"/>
+      <parameter name="className" value="obi1.fi.business.service.TheatreWS"/>
+      <parameter name="wsdlPortType" value="TheatreWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.business.fi.obi1" name="performBuy" qname="operNS:performBuy" soapAction="">
+        <parameter xmlns:pns="http://service.business.fi.obi1" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idTicket" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://service.business.fi.obi1" xmlns:retNS="http://service.business.fi.obi1" xmlns:rtns="http://to.business.fi.obi1" name="findEventos" qname="operNS:findEventos" returnQName="retNS:findEventosReturn" returnType="rtns:EventoWSTO" soapAction="">
+        <parameter xmlns:pns="http://service.business.fi.obi1" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idEvento" type="tns:int"/>
+        <parameter xmlns:pns="http://service.business.fi.obi1" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:tpEvento" type="tns:string"/>
+        <parameter xmlns:pns="http://service.business.fi.obi1" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:titulo" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="findEventos performBuy"/>
+
+      <typeMapping xmlns:ns="http://to.business.fi.obi1" qname="ns:TicketWSTO" type="java:obi1.fi.business.to.TicketWSTO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://service.business.fi.obi1" xmlns:cmp-ns="http://to.business.fi.obi1" qname="ns:ArrayOf_tns1_TicketWSTO" type="java:obi1.fi.business.to.TicketWSTO[]" innerType="cmp-ns:TicketWSTO" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://to.business.fi.obi1" qname="ns:EventoWSTO" type="java:obi1.fi.business.to.EventoWSTO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

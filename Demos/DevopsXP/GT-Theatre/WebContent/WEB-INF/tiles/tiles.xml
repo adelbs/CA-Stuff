@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="tiles.template" template="/WEB-INF/jsp/common/template.jsp">
+		<put-attribute name="menu" value="/WEB-INF/jsp/common/menu.jsp" />
+	</definition>
+
+	<definition name="tiles.template.noMenu" template="/WEB-INF/jsp/common/template.jsp" >
+		<put-attribute name="menu" value="/WEB-INF/jsp/common/blank.jsp" />
+	</definition>
+
+	<!-- HOME -->
+	<definition name="tiles.home" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/home/home.jsp" />
+	</definition>
+
+	<!-- LOGIN -->
+	<definition name="tiles.login" extends="tiles.template.noMenu">
+		<put-attribute name="body" value="/WEB-INF/jsp/home/login.jsp" />
+	</definition>
+
+	<!-- *** USUARIOS *** -->
+	
+	<definition name="tiles.adm.usuario.list" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/usuarios/list.jsp" />
+	</definition>
+
+	<definition name="tiles.adm.usuario.edit" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/usuarios/edit.jsp" />
+	</definition>
+
+	<definition name="tiles.adm.usuario.changepwd" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/usuarios/changepwd.jsp" />
+	</definition>
+
+	<!-- *** EVENTOS *** -->
+	
+	<definition name="tiles.adm.eventos.list" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/eventos/list.jsp" />
+	</definition>
+
+	<definition name="tiles.adm.eventos.edit" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/eventos/edit.jsp" />
+	</definition>
+
+	<!-- *** TICKETS *** -->
+	
+	<definition name="tiles.adm.tickets.list" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/tickets/list.jsp" />
+	</definition>
+
+	<definition name="tiles.adm.tickets.edit" extends="tiles.template">
+		<put-attribute name="body" value="/WEB-INF/jsp/tickets/edit.jsp" />
+	</definition>
+
+</tiles-definitions>
